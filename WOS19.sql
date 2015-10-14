@@ -13,9 +13,9 @@ Given a table STATION that holds data for five fields namely ID, CITY, STATE, NO
  
 Consider P1(a, b) and P2(c, d) be two points on 2D plane, where (a, b) be minimum and maximum values of Northern Latitude and (c, d) be minimum and maximum values of Western Longitude. Write a query to print the Euclidean Distance between points P1 and P2 up to 4 decimal digits.
 */
-SELECT ROUND(SQRT(POW((a-c),2)+POW((b-d),2)), 4) AS md
+SELECT ROUND(SQRT(ROUND(POW(a-c,2), 4)+ROUND(POW(b-d,2),4)), 4) AS md
 FROM
-(SELECT ROUND(MIN(LAT_N), 4) AS a, ROUND(MAX(LAT_N), 4) AS b,
-    ROUND(MIN(LONG_W), 4) AS c, ROUND(MAX(LONG_W), 4) AS d
+(SELECT MIN(LAT_N) AS a, MAX(LAT_N) AS b,
+    MIN(LONG_W) AS c, MAX(LONG_W) AS d
 FROM STATION) AS T
 ;
